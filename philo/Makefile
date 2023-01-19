@@ -1,6 +1,6 @@
-NAME = philosophers
+NAME = philo
 
-SRC = philo/main.c philo/functions.c philo/tools.c philo/routine.c philo/aux_functions.c
+SRC = main.c functions.c tools.c routine.c aux_functions.c
 
 OBJ = $(SRC:.c=.o)
 
