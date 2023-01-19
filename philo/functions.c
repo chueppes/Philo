@@ -1,9 +1,21 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   functions.c                                        :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: acalvo4 <acalvo4@student.42.rio>           +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2023/01/19 09:36:07 by acalvo4           #+#    #+#             */
+/*   Updated: 2023/01/19 09:36:07 by acalvo4          ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "philosophers.h"
 
 int	ft_is_valid(int argc, char **argv)
 {
-	int i;
-	int j;
+	int	i;
+	int	j;
 
 	i = 1;
 	j = 0;
@@ -49,7 +61,7 @@ int	ft_get_args(t_data *data, char **argv)
 
 void	ft_init_philo_struct(t_data *data)
 {
-	int i;
+	int	i;
 
 	i = 0;
 	while (i < data->num_philo)
@@ -66,7 +78,7 @@ void	ft_init_philo_struct(t_data *data)
 
 int	ft_init_mutexes(t_data *data)
 {
-	int i;
+	int	i;
 
 	i = -1;
 	while (++i < data->num_philo)

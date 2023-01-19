@@ -1,9 +1,21 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   aux_functions.c                                    :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: acalvo4 <acalvo4@student.42.rio>           +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2023/01/19 09:35:57 by acalvo4           #+#    #+#             */
+/*   Updated: 2023/01/19 09:35:57 by acalvo4          ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "philosophers.h"
 
 void	take_a_nap(long long time, t_data *data)
 {
-	long long then;
-	long long now;
+	long long	then;
+	long long	now;
 
 	then = ft_time_in_ms();
 	while (!(data->dead))
@@ -17,7 +29,7 @@ void	take_a_nap(long long time, t_data *data)
 
 void	full_of_pasta(t_philo *philo, t_data *data)
 {
-	int i;
+	int	i;
 
 	i = 0;
 	while (data->num_must_eat != -1 && i < data->num_philo
@@ -29,8 +41,8 @@ void	full_of_pasta(t_philo *philo, t_data *data)
 
 int	ft_start_simulation(t_data *data)
 {
-	int i;
-	t_philo *philo;
+	int		i;
+	t_philo	*philo;
 
 	i = 0;
 	philo = data->philos;
@@ -49,7 +61,9 @@ int	ft_start_simulation(t_data *data)
 
 void	ft_finish_simulation(t_data *data, t_philo *philo)
 {
-	int i = 0;
+	int	i;
+
+	i = 0;
 	while (i < data->num_philo)
 	{
 		pthread_join(philo[i].thread, NULL);
@@ -58,4 +72,13 @@ void	ft_finish_simulation(t_data *data, t_philo *philo)
 	}
 	pthread_mutex_destroy(&data->finish_mutex);
 	pthread_mutex_destroy(&(data->output));
+}
+
+void	output(t_philo *philo, char *action)
+{
+	pthread_mutex_lock(&philo->data->output);
+	if (!philo->data->dead)
+		printf("%lldms\t%d\t %s\n", ft_at_time(ft_time_in_ms(),
+				philo->data->time_creation), philo->id, action);
+	pthread_mutex_unlock(&philo->data->output);
 }

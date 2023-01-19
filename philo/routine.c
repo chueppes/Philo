@@ -1,17 +1,20 @@
-#include "philosophers.h"
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   routine.c                                          :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: acalvo4 <acalvo4@student.42.rio>           +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2023/01/19 09:36:22 by acalvo4           #+#    #+#             */
+/*   Updated: 2023/01/19 09:36:22 by acalvo4          ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
 
-void	output(t_philo *philo, char *action)
-{
-	pthread_mutex_lock(&philo->data->output);
-	if (!philo->data->dead)
-		printf("%lldms\t%d\t %s\n", ft_at_time(ft_time_in_ms(),
-					philo->data->time_creation), philo->id, action);
-	pthread_mutex_unlock(&philo->data->output);
-}
+#include "philosophers.h"
 
 void	get_fork(t_philo *philo)
 {
-	t_data *data;
+	t_data	*data;
 
 	data = philo->data;
 	pthread_mutex_lock(&(data->forks[philo->left_fork]));
@@ -29,7 +32,8 @@ void	get_fork(t_philo *philo)
 
 void	eat(t_philo *philo)
 {
-	t_data *data;
+	t_data	*data;
+
 	data = philo->data;
 	philo->last_meal = ft_time_in_ms();
 	pthread_mutex_lock(&(data->finish_mutex));
@@ -55,8 +59,8 @@ void	think(t_philo *philo)
 
 void	*routine(void *ptr)
 {
-	t_philo *philo;
-	t_data *data;
+	t_philo	*philo;
+	t_data	*data;
 
 	philo = (t_philo *)ptr;
 	philo->ate_count = 0;
