@@ -2,7 +2,7 @@
 
 int	ft_atoi(const char *str)
 {
-	long	aux;
+	long aux;
 	int signal = 1;
 
 	aux = 0;
@@ -22,23 +22,23 @@ int	ft_atoi(const char *str)
 	return (aux * signal);
 }
 
-int     exit_error(char *error)
+int	exit_error(char *error)
 {
-        printf("\033[0;31m\n");
-        printf("Error\n%s\n", error);
-        printf("\033[0m");
-        return (1);
+	printf("\033[0;31m\n");
+	printf("Error\n%s\n", error);
+	printf("\033[0m");
+	return (1);
 }
 
-long long ft_at_time(long long now, long long then)
+long long	ft_at_time(long long now, long long then)
 {
-	return(now - then);
+	return (now - then);
 }
 
-long long ft_time_in_ms(void)
+long long	ft_time_in_ms(void)
 {
 	struct timeval time;
 
 	gettimeofday(&time, NULL);
-	return((time.tv_sec * 1000) + time.tv_usec / 1000);
+	return ((time.tv_sec * 1000) + time.tv_usec / 1000);
 }
